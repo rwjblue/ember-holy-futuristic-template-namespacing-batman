@@ -1,6 +1,7 @@
 # ember-holy-futuristic-template-namespacing-batman
 
-This README outlines the details of collaborating on this Ember addon.
+This experimental addon allows the usage of `{{some-addon-name::component-name}}` today! 🎉
+
 
 ## Installation
 

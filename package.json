@@ -1,7 +1,7 @@
 {
   "name": "ember-holy-futuristic-template-namespacing-batman",
   "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "Experimentally allow usage of {{addon-name::component-name}} syntax today!",
   "keywords": [
     "ember-addon"
   ],
