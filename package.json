@@ -5,13 +5,21 @@
   "keywords": [
     "ember-addon"
   ],
+  "homepage": "https://github.com/rwjblue/ember-holy-futuristic-template-namespacing-batman#readme",
+  "bugs": {
+    "url": "https://github.com/rwjblue/ember-holy-futuristic-template-namespacing-batman/issues"
+  },
   "license": "MIT",
-  "author": "",
+  "author": "Robert Jackson <me@rwjblue.com>",
+  "main": "index.js",
   "directories": {
-    "doc": "doc",
+    "lib": "lib",
     "test": "tests"
   },
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rwjblue/ember-holy-futuristic-template-namespacing-batman.git"
+  },
   "scripts": {
     "build": "ember build",
     "start": "ember server",
