@@ -6,7 +6,7 @@ module.exports = {
 
   setupPreprocessorRegistry(type, registry) {
     registry.add("htmlbars-ast-plugin", {
-      name: "bind",
+      name: "holy-futuristic-template-namespacing-batman",
       plugin: require("./lib/namespacing-transform"),
       baseDir() {
         return __dirname;
