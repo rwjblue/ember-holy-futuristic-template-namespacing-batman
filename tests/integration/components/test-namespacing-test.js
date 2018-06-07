@@ -44,4 +44,10 @@ module('test-namespacing', function(hooks) {
 
     assert.equal(find('*').textContent.trim(), 'hi');
   });
+
+  test('it can render an angle bracket component', async function(assert) {
+    await render(hbs`<OtherNamespace::SomeJsThing>hi</OtherNamespace::SomeJsThing>`);
+
+    assert.equal(find('*').textContent.trim(), 'hi');
+  });
 });
