@@ -62,6 +62,6 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
-    "after": "ember-angle-bracket-invocation-polyfill"
+    "before": "ember-angle-bracket-invocation-polyfill"
   }
 }
