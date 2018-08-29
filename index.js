@@ -4,13 +4,24 @@ module.exports = {
   name: 'ember-holy-futuristic-template-namespacing-batman',
 
   setupPreprocessorRegistry(type, registry) {
-    registry.add("htmlbars-ast-plugin", {
-      name: "holy-futuristic-template-namespacing-batman",
+    let pluginObj = this._buildPlugin();
+    pluginObj.parallelBabel = {
+      requireFile: __filename,
+      buildUsing: '_buildPlugin',
+      params: {}
+    }
+
+   registry.add("htmlbars-ast-plugin", pluginObj);
+  },
+
+  _buildPlugin() {
+    return {
+      name: 'holy-futuristic-template-namespacing-batman',
       plugin: require("./lib/namespacing-transform"),
-      baseDir() {
+      baseDir: function() {
         return __dirname;
       }
-    });
+    };
   },
 
   included() {
