@@ -1,7 +1,17 @@
 'use strict';
 
+const VersionChecker = require('ember-cli-version-checker');
+
 module.exports = {
   name: 'ember-holy-futuristic-template-namespacing-batman',
+
+  init() {
+    this._super.init.apply(this, arguments);
+
+    let checker = new VersionChecker(this);
+
+    checker.for('ember-resolver').assertAbove('4.5.0', 'To use ember-holy-futuristic-template-namespacing-batman you must have ember-resolver@4.5.0');
+  },
 
   setupPreprocessorRegistry(type, registry) {
     let pluginObj = this._buildPlugin();
