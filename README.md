@@ -1,3 +1,7 @@
+## 🛑🛑🛑 Module Unification, along with the namespacing style provided by this addon, is no longer being implemented in Ember. Instead, this functionality will be replaced with [template imports](https://github.com/emberjs/rfcs/pull/454), which are still in the process of being designed and RFC'd. It is not recommended that you use this addon. 🛑🛑🛑
+
+## If you have already adopted this addon, _don't panic_. We will continue to support it until the migration to template imports has been completed.
+
 ember-holy-futuristic-template-namespacing-batman
 ==============================================================================
 
