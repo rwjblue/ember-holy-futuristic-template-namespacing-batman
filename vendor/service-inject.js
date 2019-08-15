@@ -1,12 +1,26 @@
 /* globals Ember */
-(function() {
-  // eslint-disable-next-line ember/new-module-imports
-  var ORIGINAL_INJECT_SERVICE = Ember.inject.service;
-  // eslint-disable-next-line ember/new-module-imports
-  Ember.inject.service = function(_name) {
-    var name = _name === undefined ? undefined : _name.replace('::', '@').replace('$', '@');
+/* eslint-disable ember/new-module-imports */
 
-    return ORIGINAL_INJECT_SERVICE.call(this, name);
+(function() {
+  var ORIGINAL_INJECT_SERVICE = Ember.inject.service;
+  Ember.inject.service = function(name) {
+    if (name === undefined) {
+      return ORIGINAL_INJECT_SERVICE.call(this, name);
+    }
+
+    if (name.indexOf('::') > -1) {
+      Ember.deprecate(
+        'ember-holy-futuristic-template-namespacing-batman: Using `::` for namespacing is deprecated, please migrate from `' + name + '` to `' + name.replace('::', '$') + '`',
+        false,
+        {
+          id: 'ember-holy-futuristic-template-namespacing-batman.colon-syntax',
+          until: '0.2.0'
+        }
+      );
+      return ORIGINAL_INJECT_SERVICE.call(this, name.replace('::', '@'));
+    } else {
+      return ORIGINAL_INJECT_SERVICE.call(this, name.replace('$', '@'));
+    }
   };
 })();
 
