@@ -3,7 +3,7 @@ import { helper as buildHelper } from '@ember/component/helper';
 import { default as Service, inject } from '@ember/service';
 
 import Component from '@ember/component';
-import { module, test } from 'qunit';
+import { module, test, skip } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render, find } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
@@ -14,14 +14,28 @@ define('other-namespace/services/some-service', ['exports'], function(exports) {
   });
 });
 
-define('other-namespace/templates/components/some-service-thing', ['exports'], function(exports) {
+define('other-namespace/templates/components/some-dollar-service-thing', ['exports'], function(exports) {
   exports.default = hbs`{{someService.text}}`;
 });
 
-define('other-namespace/components/some-service-thing', ['exports'], function(exports) {
+define('other-namespace/components/some-dollar-service-thing', ['exports'], function(exports) {
+  exports.default = Component.extend({
+    someService: inject('other-namespace$some-service'),
+  });
+});
+
+define('other-namespace/templates/components/some-colon-service-thing', ['exports'], function(exports) {
+  exports.default = hbs`{{someService.text}}`;
+});
+
+define('other-namespace/components/some-colon-service-thing', ['exports'], function(exports) {
   exports.default = Component.extend({
     someService: inject('other-namespace::some-service'),
   });
+});
+
+define('other-namespace/templates/components/some-nested/template-thing', ['exports'], function(exports) {
+  exports.default = hbs`some-nested-template-thing`;
 });
 
 define('other-namespace/templates/components/some-template-thing', ['exports'], function(exports) {
@@ -61,69 +75,193 @@ define('other-namespace/helpers/some-helper-thing', ['exports'], function(export
 module('test-namespacing', function(hooks) {
   setupRenderingTest(hooks);
 
-  test('it can render a helper', async function(assert) {
-    await render(hbs`{{other-namespace::some-helper-thing 'hi'}}`);
+  module('$ scoping', function() {
+    test('it can render a helper', async function(assert) {
+      await render(hbs`{{other-namespace$some-helper-thing 'hi'}}`);
 
-    assert.equal(find('*').textContent.trim(), 'hi');
-  });
+      assert.equal(find('*').textContent.trim(), 'hi');
+    });
 
-  test('it can render a template only component', async function(assert) {
-    await render(hbs`{{other-namespace::some-template-thing derp="here"}}`);
+    test('it can render a template only component', async function(assert) {
+      await render(hbs`{{other-namespace$some-template-thing derp="here"}}`);
 
-    assert.equal(find('*').textContent.trim(), 'some-template-thing');
-  });
+      assert.equal(find('*').textContent.trim(), 'some-template-thing');
+    });
 
-  test('it can render a JS only component', async function(assert) {
-    await render(hbs`{{#other-namespace::some-js-thing}}hi{{/other-namespace::some-js-thing}}`);
+    test('it can render a JS only component', async function(assert) {
+      await render(hbs`{{#other-namespace$some-js-thing}}hi{{/other-namespace$some-js-thing}}`);
 
-    assert.equal(find('*').textContent.trim(), 'hi');
-  });
+      assert.equal(find('*').textContent.trim(), 'hi');
+    });
 
-  test('it can render an angle bracket component', async function(assert) {
-    await render(hbs`<OtherNamespace::SomeJsThing>hi</OtherNamespace::SomeJsThing>`);
+    test('it can render an angle bracket component', async function(assert) {
+      await render(hbs`<OtherNamespace$SomeJsThing>hi</OtherNamespace$SomeJsThing>`);
 
-    assert.equal(find('*').textContent.trim(), 'hi');
-  });
+      assert.equal(find('*').textContent.trim(), 'hi');
+    });
 
-  test('it can render service injection', async function(assert) {
-    await render(hbs`{{other-namespace::some-service-thing}}`);
+    // this should be unskipped when we no longer process both `::` and `$` sigils, currently
+    // it is impossible to guarantee that nested component invocation actually works because we supported `::` in
+    // angle brackets
+    skip('it can render a nested angle bracket component', async function(assert) {
+      await render(hbs`<OtherNamespace$SomeNested::TemplateThing>hi</OtherNamespace$SomeNested::TemplateThing>`);
 
-    assert.equal(find('*').textContent.trim(), 'some random text');
-  });
+      assert.equal(find('*').textContent.trim(), 'some-nested-template-thing');
+    });
 
-  test('it can render dynamic component', async function(assert) {
-    this.dynamicName = "other-namespace::some-service-thing";
-    await render(hbs`{{component dynamicName}}`);
+    test('it can render service injection', async function(assert) {
+      await render(hbs`{{other-namespace$some-dollar-service-thing}}`);
 
-    assert.equal(find('*').textContent.trim(), 'some random text');
-  });
+      assert.equal(find('*').textContent.trim(), 'some random text');
+    });
 
-  test('it can render component helper with static name', async function(assert) {
-    await render(hbs`{{component "other-namespace::some-service-thing"}}`);
+    test('it can render dynamic component', async function(assert) {
+      this.dynamicName = "other-namespace$some-dollar-service-thing";
+      await render(hbs`{{component dynamicName}}`);
 
-    assert.equal(find('*').textContent.trim(), 'some random text');
-  });
+      assert.equal(find('*').textContent.trim(), 'some random text');
+    });
 
-  test('it can render component helper with expression', async function(assert) {
-    await render(hbs`
+    test('it can render component helper with static name', async function(assert) {
+      await render(hbs`{{component "other-namespace$some-dollar-service-thing"}}`);
+
+      assert.equal(find('*').textContent.trim(), 'some random text');
+    });
+
+    test('it can render component helper with expression', async function(assert) {
+      await render(hbs`
       {{component
-        (other-namespace::some-helper-thing "other-namespace::some-service-thing")
+        (other-namespace$some-helper-thing "other-namespace$some-dollar-service-thing")
       }}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'some random text');
-  });
+      assert.equal(find('*').textContent.trim(), 'some random text');
+    });
 
-  test('it can render component helper in block mode with static name', async function(assert) {
-    await render(hbs`{{#component "other-namespace::some-yield-static" as |cmpt|}}
+    test('it can render component helper in block mode with static name', async function(assert) {
+      await render(hbs`{{#component "other-namespace$some-yield-static" as |cmpt|}}
                        {{component cmpt}}
                      {{/component}}`);
 
-    assert.equal(find('*').textContent.trim(), 'some-template-thing');
+      assert.equal(find('*').textContent.trim(), 'some-template-thing');
+    });
+
+    test('it can render component helper in block mode with expression', async function(assert) {
+      await render(hbs`
+      {{#component
+        (other-namespace$some-helper-thing "other-namespace$some-yield-static")
+        as |cmpt|}}
+        {{component cmpt}}
+      {{/component}}
+    `);
+
+      assert.equal(find('*').textContent.trim(), 'some-template-thing');
+    });
+
+    test('it can render component helper in block mode with dynamic name', async function(assert) {
+      this.dynamicName = 'other-namespace$some-yield-static';
+      await render(hbs`{{#component dynamicName as |cmpt|}}
+                       {{component cmpt}}
+                     {{/component}}`);
+
+      assert.equal(find('*').textContent.trim(), 'some-template-thing');
+    });
+
+    test('it can yield component with dynamic name', async function(assert) {
+      await render(
+        hbs`{{#other-namespace$some-yield-dynamic dynamicName="other-namespace$some-template-thing" as |cmpt|}}
+            {{component cmpt}}
+          {{/other-namespace$some-yield-dynamic}}`
+      );
+
+      assert.equal(find('*').textContent.trim(), 'some-template-thing');
+    });
+
+    test('it can yield component with static name', async function(assert) {
+      await render(
+        hbs`{{#other-namespace$some-yield-static  as |cmpt|}}
+            {{component cmpt}}
+          {{/other-namespace$some-yield-static}}`
+      );
+
+      assert.equal(find('*').textContent.trim(), 'some-template-thing');
+    });
+
+    test('it can yield component with expression', async function(assert) {
+      await render(
+        hbs`{{#other-namespace$some-yield-helper  as |cmpt|}}
+            {{component cmpt}}
+          {{/other-namespace$some-yield-helper}}`
+      );
+
+      assert.equal(find('*').textContent.trim(), 'some-template-thing');
+    });
   });
 
-  test('it can render component helper in block mode with expression', async function(assert) {
-    await render(hbs`
+  module(':: scoping [deprecated]', function() {
+    test('it can render a helper', async function(assert) {
+      await render(hbs`{{other-namespace::some-helper-thing 'hi'}}`);
+
+      assert.equal(find('*').textContent.trim(), 'hi');
+    });
+
+    test('it can render a template only component', async function(assert) {
+      await render(hbs`{{other-namespace::some-template-thing derp="here"}}`);
+
+      assert.equal(find('*').textContent.trim(), 'some-template-thing');
+    });
+
+    test('it can render a JS only component', async function(assert) {
+      await render(hbs`{{#other-namespace::some-js-thing}}hi{{/other-namespace::some-js-thing}}`);
+
+      assert.equal(find('*').textContent.trim(), 'hi');
+    });
+
+    test('it can render an angle bracket component', async function(assert) {
+      await render(hbs`<OtherNamespace::SomeJsThing>hi</OtherNamespace::SomeJsThing>`);
+
+      assert.equal(find('*').textContent.trim(), 'hi');
+    });
+
+    test('it can render service injection', async function(assert) {
+      await render(hbs`{{other-namespace::some-colon-service-thing}}`);
+
+      assert.equal(find('*').textContent.trim(), 'some random text');
+    });
+
+    test('it can render dynamic component', async function(assert) {
+      this.dynamicName = "other-namespace::some-colon-service-thing";
+      await render(hbs`{{component dynamicName}}`);
+
+      assert.equal(find('*').textContent.trim(), 'some random text');
+    });
+
+    test('it can render component helper with static name', async function(assert) {
+      await render(hbs`{{component "other-namespace::some-colon-service-thing"}}`);
+
+      assert.equal(find('*').textContent.trim(), 'some random text');
+    });
+
+    test('it can render component helper with expression', async function(assert) {
+      await render(hbs`
+      {{component
+        (other-namespace::some-helper-thing "other-namespace::some-colon-service-thing")
+      }}
+    `);
+
+      assert.equal(find('*').textContent.trim(), 'some random text');
+    });
+
+    test('it can render component helper in block mode with static name', async function(assert) {
+      await render(hbs`{{#component "other-namespace::some-yield-static" as |cmpt|}}
+                       {{component cmpt}}
+                     {{/component}}`);
+
+      assert.equal(find('*').textContent.trim(), 'some-template-thing');
+    });
+
+    test('it can render component helper in block mode with expression', async function(assert) {
+      await render(hbs`
       {{#component
         (other-namespace::some-helper-thing "other-namespace::some-yield-static")
         as |cmpt|}}
@@ -131,45 +269,46 @@ module('test-namespacing', function(hooks) {
       {{/component}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'some-template-thing');
-  });
+      assert.equal(find('*').textContent.trim(), 'some-template-thing');
+    });
 
-  test('it can render component helper in block mode with dynamic name', async function(assert) {
-    this.dynamicName = 'other-namespace::some-yield-static';
-    await render(hbs`{{#component dynamicName as |cmpt|}}
+    test('it can render component helper in block mode with dynamic name', async function(assert) {
+      this.dynamicName = 'other-namespace::some-yield-static';
+      await render(hbs`{{#component dynamicName as |cmpt|}}
                        {{component cmpt}}
                      {{/component}}`);
 
-    assert.equal(find('*').textContent.trim(), 'some-template-thing');
-  });
+      assert.equal(find('*').textContent.trim(), 'some-template-thing');
+    });
 
-  test('it can yield component with dynamic name', async function(assert) {
-    await render(
-      hbs`{{#other-namespace::some-yield-dynamic dynamicName="other-namespace::some-template-thing" as |cmpt|}}
+    test('it can yield component with dynamic name', async function(assert) {
+      await render(
+        hbs`{{#other-namespace::some-yield-dynamic dynamicName="other-namespace::some-template-thing" as |cmpt|}}
             {{component cmpt}}
           {{/other-namespace::some-yield-dynamic}}`
-    );
+      );
 
-    assert.equal(find('*').textContent.trim(), 'some-template-thing');
-  });
+      assert.equal(find('*').textContent.trim(), 'some-template-thing');
+    });
 
-  test('it can yield component with static name', async function(assert) {
-    await render(
-      hbs`{{#other-namespace::some-yield-static  as |cmpt|}}
+    test('it can yield component with static name', async function(assert) {
+      await render(
+        hbs`{{#other-namespace::some-yield-static  as |cmpt|}}
             {{component cmpt}}
           {{/other-namespace::some-yield-static}}`
-    );
+      );
 
-    assert.equal(find('*').textContent.trim(), 'some-template-thing');
-  });
+      assert.equal(find('*').textContent.trim(), 'some-template-thing');
+    });
 
-  test('it can yield component with expression', async function(assert) {
-    await render(
-      hbs`{{#other-namespace::some-yield-helper  as |cmpt|}}
+    test('it can yield component with expression', async function(assert) {
+      await render(
+        hbs`{{#other-namespace::some-yield-helper  as |cmpt|}}
             {{component cmpt}}
           {{/other-namespace::some-yield-helper}}`
-    );
+      );
 
-    assert.equal(find('*').textContent.trim(), 'some-template-thing');
+      assert.equal(find('*').textContent.trim(), 'some-template-thing');
+    });
   });
 });
