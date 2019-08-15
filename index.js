@@ -14,20 +14,39 @@ module.exports = {
   },
 
   setupPreprocessorRegistry(type, registry) {
-    let pluginObj = this._buildPlugin();
-    pluginObj.parallelBabel = {
+    let dollarPluginObj = this._buildDollarPlugin();
+    dollarPluginObj.parallelBabel = {
       requireFile: __filename,
-      buildUsing: '_buildPlugin',
+      buildUsing: '_buildDollarPlugin',
       params: {}
     }
 
-   registry.add("htmlbars-ast-plugin", pluginObj);
+    registry.add("htmlbars-ast-plugin", dollarPluginObj);
+
+    let colonPluginObj = this._buildColonPlugin();
+    colonPluginObj.parallelBabel = {
+      requireFile: __filename,
+      buildUsing: '_buildColonPlugin',
+      params: {}
+    }
+
+   registry.add("htmlbars-ast-plugin", colonPluginObj);
   },
 
-  _buildPlugin() {
+  _buildDollarPlugin() {
     return {
       name: 'holy-futuristic-template-namespacing-batman',
-      plugin: require("./lib/namespacing-transform"),
+      plugin: require("./lib/namespacing-transform").DollarNamespacingTransform,
+      baseDir: function() {
+        return __dirname;
+      }
+    };
+  },
+
+  _buildColonPlugin() {
+    return {
+      name: 'holy-futuristic-template-namespacing-batman',
+      plugin: require("./lib/namespacing-transform").ColonNamespacingTransform,
       baseDir: function() {
         return __dirname;
       }
