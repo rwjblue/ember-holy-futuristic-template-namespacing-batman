@@ -1,6 +1,6 @@
 {
   "name": "ember-holy-futuristic-template-namespacing-batman",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Experimentally allow usage of {{addon-name::component-name}} syntax today!",
   "keywords": [
     "ember-addon"
