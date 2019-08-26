@@ -18,6 +18,13 @@ originally proposed in
 deprecated in future versions in order to avoid collisions with
 [emberjs/rfcs#457](https://github.com/emberjs/rfcs/pull/457).
 
+
+### Requirements:
+
+* Ember.js v3.4 or above
+* Ember CLI v2.13 or above
+* Node.js v8 or above
+
 Installation
 ------------------------------------------------------------------------------
 
