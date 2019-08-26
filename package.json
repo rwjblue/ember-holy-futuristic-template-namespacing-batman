@@ -9,16 +9,16 @@
   "bugs": {
     "url": "https://github.com/rwjblue/ember-holy-futuristic-template-namespacing-batman/issues"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rwjblue/ember-holy-futuristic-template-namespacing-batman.git"
+  },
   "license": "MIT",
   "author": "Robert Jackson <me@rwjblue.com>",
   "main": "index.js",
   "directories": {
     "lib": "lib",
     "test": "tests"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/rwjblue/ember-holy-futuristic-template-namespacing-batman.git"
   },
   "scripts": {
     "build": "ember build",
@@ -56,13 +56,31 @@
     "eslint-plugin-ember": "^6.0.1",
     "eslint-plugin-node": "^8.0.0",
     "loader.js": "^4.7.0",
-    "qunit-dom": "^0.8.1"
+    "qunit-dom": "^0.8.1",
+    "release-it": "^12.2.1",
+    "release-it-lerna-changelog": "^1.0.3"
   },
   "engines": {
     "node": "^4.5 || 6.* || >= 7.*"
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
   "ember-addon": {
     "configPath": "tests/dummy/config",
     "before": "ember-angle-bracket-invocation-polyfill"
+  },
+  "release-it": {
+    "plugins": {
+      "release-it-lerna-changelog": {
+        "infile": "CHANGELOG.md"
+      }
+    },
+    "git": {
+      "tagName": "v${version}"
+    },
+    "github": {
+      "release": true
+    }
   }
 }
