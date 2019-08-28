@@ -55,6 +55,7 @@ module.exports = {
 
   included() {
     this._super.included.apply(this, arguments);
-    this.import('vendor/service-inject.js');
+
+    this.import('vendor/service-inject-2.js');
   }
 };
