@@ -234,8 +234,6 @@ module('test-namespacing', function(hooks) {
       this.dynamicName = "other-namespace::some-colon-service-thing";
       await render(hbs`{{component dynamicName}}`);
 
-      assert.deprecationsInclude('ember-holy-futuristic-template-namespacing-batman: Using `::` for namespacing is deprecated, please migrate from {{component "other-namespace::some-colon-service-thing" to {{"other-namespace$some-colon-service-thing"');
-
       assert.equal(find('*').textContent.trim(), 'some random text');
     });
 
@@ -251,8 +249,6 @@ module('test-namespacing', function(hooks) {
         (other-namespace::some-helper-thing "other-namespace::some-colon-service-thing")
       }}
     `);
-
-      assert.deprecationsInclude('ember-holy-futuristic-template-namespacing-batman: Using `::` for namespacing is deprecated, please migrate from {{component "other-namespace::some-colon-service-thing" to {{"other-namespace$some-colon-service-thing"');
 
       assert.equal(find('*').textContent.trim(), 'some random text');
     });
