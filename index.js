@@ -22,31 +22,12 @@ module.exports = {
     }
 
     registry.add("htmlbars-ast-plugin", dollarPluginObj);
-
-    let colonPluginObj = this._buildColonPlugin();
-    colonPluginObj.parallelBabel = {
-      requireFile: __filename,
-      buildUsing: '_buildColonPlugin',
-      params: {}
-    }
-
-   registry.add("htmlbars-ast-plugin", colonPluginObj);
   },
 
   _buildDollarPlugin() {
     return {
       name: 'holy-futuristic-template-namespacing-batman',
       plugin: require("./lib/namespacing-transform").DollarNamespacingTransform,
-      baseDir: function() {
-        return __dirname;
-      }
-    };
-  },
-
-  _buildColonPlugin() {
-    return {
-      name: 'holy-futuristic-template-namespacing-batman',
-      plugin: require("./lib/namespacing-transform").ColonNamespacingTransform,
       baseDir: function() {
         return __dirname;
       }
