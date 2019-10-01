@@ -1,3 +1,15 @@
+## v0.2.0 (2019-10-01)
+
+#### :boom: Breaking Change
+* [#209](https://github.com/rwjblue/ember-holy-futuristic-template-namespacing-batman/pull/209) Drop Node 6, 7, 9, 11. Drop support for Ember < 3.4. ([@rwjblue](https://github.com/rwjblue))
+
+#### :rocket: Enhancement
+* [#235](https://github.com/rwjblue/ember-holy-futuristic-template-namespacing-batman/pull/235) Bring back the deprecations! ([@rwjblue](https://github.com/rwjblue))
+
+#### Committers: 2
+- Robert Jackson ([@rwjblue](https://github.com/rwjblue))
+- [@dependabot-preview[bot]](https://github.com/apps/dependabot-preview)
+
 ## v0.1.8 (2019-08-28)
 
 #### :bug: Bug Fix
