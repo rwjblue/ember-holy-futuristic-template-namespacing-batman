@@ -1,3 +1,12 @@
+## v0.1.8 (2019-08-28)
+
+#### :bug: Bug Fix
+* [#212](https://github.com/rwjblue/ember-holy-futuristic-template-namespacing-batman/pull/212) Version runtime helpers to avoid multi-version collisions. ([@rwjblue](https://github.com/rwjblue))
+* [#211](https://github.com/rwjblue/ember-holy-futuristic-template-namespacing-batman/pull/211) Remove deprecations. ([@rwjblue](https://github.com/rwjblue))
+
+#### Committers: 1
+- Robert Jackson ([@rwjblue](https://github.com/rwjblue))
+
 ## v0.1.7 (2019-08-26)
 
 #### :rocket: Enhancement
