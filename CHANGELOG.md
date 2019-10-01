@@ -1,3 +1,12 @@
+## v1.0.0 (2019-10-01)
+
+#### :boom: Breaking Change
+* [#233](https://github.com/rwjblue/ember-holy-futuristic-template-namespacing-batman/pull/233) Remove support for `::` syntax ([@gabrielcsapo](https://github.com/gabrielcsapo))
+
+#### Committers: 2
+- Gabriel Csapo ([@gabrielcsapo](https://github.com/gabrielcsapo))
+- [@dependabot-preview[bot]](https://github.com/apps/dependabot-preview)
+
 ## v0.2.0 (2019-10-01)
 
 #### :boom: Breaking Change
