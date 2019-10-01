@@ -11,11 +11,10 @@ components and helpers using their addons name, by using `$` syntax.
 Using a new syntax designed to avoid collisions with how Ember has ultimately
 decided to use `::`: `{{some-addon-name$component-name}}`
 
-*Note:* This addon currently also allows using the `::` syntax that was
+*Note:* This addon does not support using the `::` syntax that was
 originally proposed in
 [emberjs/rfcs#309](https://github.com/emberjs/rfcs/pull/309) (e.g.
-`{{some-addon-name::component-name}}`), but that functionality will be
-deprecated in future versions in order to avoid collisions with
+`{{some-addon-name::component-name}}`). This was deprecated in [ember-holy-futuristic-template-namespacing-batman/233](https://github.com/rwjblue/ember-holy-futuristic-template-namespacing-batman/pull/233) in order to avoid collisions with
 [emberjs/rfcs#457](https://github.com/emberjs/rfcs/pull/457).
 
 

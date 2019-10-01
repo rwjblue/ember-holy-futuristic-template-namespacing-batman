@@ -22,15 +22,6 @@ module.exports = {
     }
 
     registry.add("htmlbars-ast-plugin", dollarPluginObj);
-
-    let colonPluginObj = this._buildColonPlugin();
-    colonPluginObj.parallelBabel = {
-      requireFile: __filename,
-      buildUsing: '_buildColonPlugin',
-      params: {}
-    }
-
-   registry.add("htmlbars-ast-plugin", colonPluginObj);
   },
 
   _buildDollarPlugin() {
@@ -43,19 +34,9 @@ module.exports = {
     };
   },
 
-  _buildColonPlugin() {
-    return {
-      name: 'holy-futuristic-template-namespacing-batman',
-      plugin: require("./lib/namespacing-transform").ColonNamespacingTransform,
-      baseDir: function() {
-        return __dirname;
-      }
-    };
-  },
-
   included() {
     this._super.included.apply(this, arguments);
 
-    this.import('vendor/service-inject-2.js');
+    this.import('vendor/service-inject-3.js');
   }
 };
