@@ -1,22 +1,14 @@
-## 🛑🛑🛑 Module Unification is no longer being implemented in Ember. Instead, this functionality will be replaced with [template imports](https://github.com/emberjs/rfcs/pull/454), which are still in the process of being designed and RFC'd. It is not recommended that you use this addon. 🛑🛑🛑
-
-## If you have already adopted this addon, _don't panic_. We will continue to support it until the migration to template imports has been completed.
-
 ember-holy-futuristic-template-namespacing-batman
 ==============================================================================
 
-This experimental addon allows the usage of two different styles of invoking
+This experimental addon allows for an additional style of invoking
 components and helpers using their addons name, by using `$` syntax.
-
-Using a new syntax designed to avoid collisions with how Ember has ultimately
-decided to use `::`: `{{some-addon-name$component-name}}`
 
 *Note:* This addon does not support using the `::` syntax that was
 originally proposed in
 [emberjs/rfcs#309](https://github.com/emberjs/rfcs/pull/309) (e.g.
 `{{some-addon-name::component-name}}`). This was deprecated in [ember-holy-futuristic-template-namespacing-batman/233](https://github.com/rwjblue/ember-holy-futuristic-template-namespacing-batman/pull/233) in order to avoid collisions with
 [emberjs/rfcs#457](https://github.com/emberjs/rfcs/pull/457).
-
 
 ### Requirements:
 
