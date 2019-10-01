@@ -23,9 +23,17 @@ module('Unit | Service | namespaced-services', function(hooks) {
   });
 
   test('works with :: [deprecated]', function(assert) {
-    this.owner.register('service:subject', Service.extend({
-      someService: inject('other-namespace::some-thing'),
-    }));
+    assert.deprecations(
+      () => {
+        this.owner.register('service:subject', Service.extend({
+          someService: inject('other-namespace::some-thing'),
+        }));
+
+      },
+      [
+        'ember-holy-futuristic-template-namespacing-batman: Using `::` for namespacing is deprecated, please migrate from `other-namespace::some-thing` to `other-namespace$some-thing`'
+      ]
+    );
 
     let service = this.owner.lookup('service:subject');
     assert.equal(service.get('someService').sayHi(), 'hi!');
