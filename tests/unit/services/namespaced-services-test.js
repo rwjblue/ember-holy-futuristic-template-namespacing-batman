@@ -21,4 +21,14 @@ module('Unit | Service | namespaced-services', function(hooks) {
 
     assert.equal(service.get('someService').sayHi(), 'hi!');
   });
+
+  test('doesn\'t break services injected using decorators', function (assert) {
+    this.owner.register('service:subject', class Subject extends Service {
+      @inject('other-namespace$some-thing') bar;
+    });
+
+    let service = this.owner.lookup('service:subject');
+
+    assert.equal(service.get('bar').sayHi(), 'hi!');
+  })
 });
