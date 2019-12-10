@@ -8,7 +8,7 @@ module.exports = {
   init() {
     this._super.init.apply(this, arguments);
 
-    let checker = new VersionChecker(this);
+    let checker = new VersionChecker(this.project);
 
     checker.for('ember-resolver').assertAbove('4.5.0', 'To use ember-holy-futuristic-template-namespacing-batman you must have ember-resolver@4.5.0');
   },
