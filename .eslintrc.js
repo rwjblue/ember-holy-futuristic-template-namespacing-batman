@@ -26,7 +26,8 @@ module.exports = {
         'blueprints/*/index.js',
         'config/**/*.js',
         'tests/dummy/config/**/*.js',
-        'lib/**/*.js'
+        'lib/**/*.js',
+        'node-tests/**/*.js',
       ],
       excludedFiles: [
         'addon/**',
@@ -45,6 +46,15 @@ module.exports = {
       rules: Object.assign({}, require('eslint-plugin-node').configs.recommended.rules, {
         // add your custom rules and overrides for node files here
       })
+    },
+    {
+      // test files
+      files: [
+        'node-tests/**/*.js',
+      ],
+      env: {
+        mocha: true,
+      }
     }
   ]
 };
