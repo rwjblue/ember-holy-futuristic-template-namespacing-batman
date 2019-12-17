@@ -1,3 +1,23 @@
+## v1.0.1 (2019-12-17)
+
+#### :bug: Bug Fix
+* [#245](https://github.com/rwjblue/ember-holy-futuristic-template-namespacing-batman/pull/245) Ensure `@injectService` works properly ([@srowhani](https://github.com/srowhani))
+* [#270](https://github.com/rwjblue/ember-holy-futuristic-template-namespacing-batman/pull/270) Fix dependency check of ember-resolver in project ([@alias-mac](https://github.com/alias-mac))
+
+#### :memo: Documentation
+* [#236](https://github.com/rwjblue/ember-holy-futuristic-template-namespacing-batman/pull/236) Remove last trace of `::` in README and package.json ([@rwjblue](https://github.com/rwjblue))
+
+#### :house: Internal
+* [#278](https://github.com/rwjblue/ember-holy-futuristic-template-namespacing-batman/pull/278) Remove ember-cli-htmlbars-inline-precompile. ([@rwjblue](https://github.com/rwjblue))
+* [#277](https://github.com/rwjblue/ember-holy-futuristic-template-namespacing-batman/pull/277) Increase browser start timeout to avoid CI timeout errors. ([@rwjblue](https://github.com/rwjblue))
+* [#276](https://github.com/rwjblue/ember-holy-futuristic-template-namespacing-batman/pull/276) Add basic node-land test. ([@rwjblue](https://github.com/rwjblue))
+
+#### Committers: 4
+- Filipe Guerra ([@alias-mac](https://github.com/alias-mac))
+- Robert Jackson ([@rwjblue](https://github.com/rwjblue))
+- Seena Rowhani ([@srowhani](https://github.com/srowhani))
+- [@dependabot-preview[bot]](https://github.com/apps/dependabot-preview)
+
 ## v1.0.0 (2019-10-01)
 
 #### :boom: Breaking Change

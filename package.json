@@ -1,6 +1,6 @@
 {
   "name": "ember-holy-futuristic-template-namespacing-batman",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Experimentally allow usage of {{addon-name$component-name}} syntax to invoke a helper or component from an addon directly",
   "keywords": [
     "ember-addon"
