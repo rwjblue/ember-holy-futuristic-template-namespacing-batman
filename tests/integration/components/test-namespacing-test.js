@@ -6,7 +6,7 @@ import Component from '@ember/component';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render, find } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 
 define('other-namespace/services/some-service', ['exports'], function(exports) {
   exports.default = Service.extend({
