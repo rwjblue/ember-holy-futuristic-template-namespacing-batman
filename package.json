@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "ember-cli-babel": "^7.13.2",
-    "ember-cli-version-checker": "^3.0.1"
+    "ember-cli-version-checker": "^5.1.1"
   },
   "devDependencies": {
     "chai": "^4.2.0",
