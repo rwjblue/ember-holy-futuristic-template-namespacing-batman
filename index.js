@@ -10,7 +10,11 @@ module.exports = {
 
     let checker = new VersionChecker(this.project);
 
-    checker.for('ember-resolver').assertAbove('4.5.0', 'To use ember-holy-futuristic-template-namespacing-batman you must have ember-resolver@4.5.0');
+    // Only check ember-resolver version if the app is using it (handles case where app uses ember-strict-resolver)
+    const emberResolverDep = checker.for('ember-resolver');
+    if (emberResolverDep.exists()) {
+      emberResolverDep.assertAbove('4.5.0', 'To use ember-holy-futuristic-template-namespacing-batman you must have ember-resolver@4.5.0');
+    }
   },
 
   setupPreprocessorRegistry(type, registry) {
