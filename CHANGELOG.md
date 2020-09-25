@@ -1,3 +1,12 @@
+## v1.0.2 (2020-09-25)
+
+#### :rocket: Enhancement
+* [#394](https://github.com/rwjblue/ember-holy-futuristic-template-namespacing-batman/pull/394) Avoid `ember-resolver` version assertion when `ember-resolver` is not used ([@nlfurniss](https://github.com/nlfurniss))
+
+#### Committers: 2
+- Nathaniel Furniss ([@nlfurniss](https://github.com/nlfurniss))
+- [@dependabot-preview[bot]](https://github.com/apps/dependabot-preview)
+
 ## v1.0.1 (2019-12-17)
 
 #### :bug: Bug Fix
