@@ -1,3 +1,11 @@
+## v1.1.0 (2021-02-12)
+
+#### :rocket: Enhancement
+* [#418](https://github.com/rwjblue/ember-holy-futuristic-template-namespacing-batman/pull/418) Add support for 'excludeNestedAddonTransforms' configuration setting ([@charlespierce](https://github.com/charlespierce))
+
+#### Committers: 1
+- Charles Pierce ([@charlespierce](https://github.com/charlespierce))
+
 ## v1.0.2 (2020-09-25)
 
 #### :rocket: Enhancement
