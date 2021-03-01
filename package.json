@@ -40,7 +40,7 @@
     "ember-cli": "~3.16.0",
     "ember-cli-dependency-checker": "^3.2.0",
     "ember-cli-eslint": "^5.1.0",
-    "ember-cli-htmlbars": "^4.2.0",
+    "ember-cli-htmlbars": "^5.6.2",
     "ember-cli-inject-live-reload": "^2.0.2",
     "ember-cli-qunit": "^4.1.1",
     "ember-disable-prototype-extensions": "^1.1.2",
