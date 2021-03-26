@@ -1,6 +1,8 @@
 ember-holy-futuristic-template-namespacing-batman
 ==============================================================================
 
+## 🚨 This addon is no longer aligned with the future of Ember.js. Don't use this addon, instead use the [ember-template-imports](https://github.com/ember-template-imports/ember-template-imports) addon, which introduces experimental support for template imports.
+
 This experimental addon allows for an additional style of invoking
 components and helpers using their addons name, by using `$` syntax.
 
