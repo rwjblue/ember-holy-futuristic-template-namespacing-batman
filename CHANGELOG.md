@@ -1,3 +1,15 @@
+## v1.1.1 (2021-05-27)
+
+#### :bug: Bug Fix
+* [#436](https://github.com/rwjblue/ember-holy-futuristic-template-namespacing-batman/pull/436) Include no-op status in the cache key for the AST plugin ([@charlespierce](https://github.com/charlespierce))
+
+#### :memo: Documentation
+* [#424](https://github.com/rwjblue/ember-holy-futuristic-template-namespacing-batman/pull/424) Add note favoring ember-template-imports over this addon ([@pzuraq](https://github.com/pzuraq))
+
+#### Committers: 2
+- Charles Pierce ([@charlespierce](https://github.com/charlespierce))
+- Chris Garrett ([@pzuraq](https://github.com/pzuraq))
+
 ## v1.1.0 (2021-02-12)
 
 #### :rocket: Enhancement
