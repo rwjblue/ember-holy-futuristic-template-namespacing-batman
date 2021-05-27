@@ -51,6 +51,9 @@ module.exports = {
       baseDir: function() {
         return __dirname;
       },
+      cacheKey: function() {
+        return addon._shouldBeInert() ? 'noop' : 'transform';
+      },
       parallelBabel: {
         requireFile: __filename,
         get buildUsing() {
