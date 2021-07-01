@@ -9,6 +9,7 @@ function inertPlugin() {
     visitor: {},
   };
 }
+inertPlugin.cacheKey = () => 'ember-holy-futuristic-template-namespacing-batman:noop';
 
 module.exports = {
   name: 'ember-holy-futuristic-template-namespacing-batman',
