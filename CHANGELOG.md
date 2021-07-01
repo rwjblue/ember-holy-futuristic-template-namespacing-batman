@@ -1,3 +1,11 @@
+## v1.1.2 (2021-07-01)
+
+#### :bug: Bug Fix
+* [#449](https://github.com/rwjblue/ember-holy-futuristic-template-namespacing-batman/pull/449) Fix parallelization under Embroider builds ([@rwjblue](https://github.com/rwjblue))
+
+#### Committers: 1
+- Robert Jackson ([@rwjblue](https://github.com/rwjblue))
+
 ## v1.1.1 (2021-05-27)
 
 #### :bug: Bug Fix
