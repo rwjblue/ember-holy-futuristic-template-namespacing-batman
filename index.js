@@ -101,7 +101,7 @@ module.exports = {
         );
       }
     } else {
-      this.import('vendor/service-inject-3.js');
+      this.import('vendor/service-inject-4.js');
     }
   },
 };
