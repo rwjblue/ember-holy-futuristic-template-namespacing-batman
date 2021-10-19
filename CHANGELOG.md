@@ -1,3 +1,16 @@
+## v1.2.0 (2021-10-19)
+
+#### :bug: Bug Fix
+* [#456](https://github.com/rwjblue/ember-holy-futuristic-template-namespacing-batman/pull/456) Fix usage of `{{component 'some-string'}}` under Embroider (re-export the dynamic component helper into `app`) ([@thoov](https://github.com/thoov))
+
+#### :house: Internal
+* [#457](https://github.com/rwjblue/ember-holy-futuristic-template-namespacing-batman/pull/457) Fix CI for Ember 4 ([@rwjblue](https://github.com/rwjblue))
+
+#### Committers: 3
+- Robert Jackson ([@rwjblue](https://github.com/rwjblue))
+- Travis Hoover ([@thoov](https://github.com/thoov))
+- [@dependabot-preview[bot]](https://github.com/apps/dependabot-preview)
+
 ## v1.1.2 (2021-07-01)
 
 #### :bug: Bug Fix
