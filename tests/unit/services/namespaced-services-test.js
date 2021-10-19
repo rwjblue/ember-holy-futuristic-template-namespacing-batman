@@ -2,7 +2,7 @@
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 import { default as Service, inject } from '@ember/service';
-import hasEmberVersion from 'ember-test-helpers/has-ember-version';
+import hasEmberVersion from '@ember/test-helpers/has-ember-version';
 
 define('other-namespace/services/some-thing', ['exports'], function(exports) {
   exports.default = Service.extend({
