@@ -47,7 +47,7 @@ module.exports = {
           return inertPlugin;
         }
 
-        return require('./lib/namespacing-transform').DollarNamespacingTransform;
+        return require('./lib/namespacing-transform');
       },
       baseDir: function() {
         return __dirname;
@@ -70,7 +70,7 @@ module.exports = {
     // Used only when parallelizing the build
     return {
       name: 'holy-futuristic-template-namespacing-batman',
-      plugin: require('./lib/namespacing-transform').DollarNamespacingTransform,
+      plugin: require('./lib/namespacing-transform'),
       baseDir: function() {
         return __dirname;
       },
