@@ -1,0 +1,1 @@
+export { default } from 'ember-holy-futuristic-template-namespacing-batman/helpers/-translate-dynamic-2';
