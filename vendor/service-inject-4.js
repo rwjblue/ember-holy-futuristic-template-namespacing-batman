@@ -22,16 +22,19 @@
     }
   }
 
-  if (typeof Ember !== 'undefined') {
-    Ember.inject.service = generatePatchedInject(Ember.inject.service);
-  } else {
+  if (typeof require === 'function' && typeof require.has === 'function' && require.has('@ember/service')) {
     // support Ember 4+ (where `window.Ember` is not present)
     // NOTE: this is possibly going to need to change if we ever freeze the exports
     // on our modules
     //
     // Embroider NOTE: this does not work :D (Embroider isn't going to allow mutation of the module at runtime like this)
-    var module = require('@ember/service');
+    var serviceModule = require('@ember/service');
 
-    module.inject = generatePatchedInject(module.inject);
+    serviceModule.inject = generatePatchedInject(serviceModule.inject);
+  }
+
+  // Also patch `Ember.inject.service` if `window.Ember` is present...
+  if (typeof Ember !== 'undefined') {
+    Ember.inject.service = generatePatchedInject(Ember.inject.service);
   }
 })();
