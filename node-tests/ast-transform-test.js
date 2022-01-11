@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 const templateCompiler = require('ember-source/dist/ember-template-compiler');
-const Plugin = require('../lib/namespacing-transform').DollarNamespacingTransform
+const Plugin = require('../lib/namespacing-transform')
 
 describe('namespacing-transform', function() {
   function precompile(templateString, _options) {
