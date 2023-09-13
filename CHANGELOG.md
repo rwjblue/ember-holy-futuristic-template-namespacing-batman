@@ -1,3 +1,13 @@
+## v1.2.1 (2021-10-19)
+
+#### :bug: Bug Fix
+
+- [#541](https://github.com/rwjblue/ember-holy-futuristic-template-namespacing-batman/pull/541) Avoid erroring while in `.gjs` / `.gts` files (e.g. strict mode)
+
+#### Committers: 1
+
+- Hank Majoros ([@hmajoros](https://github.com/hmajoros))
+
 ## v1.2.0 (2021-10-19)
 
 #### :bug: Bug Fix
